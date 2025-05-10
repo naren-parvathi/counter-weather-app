@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="mb-4 d-flex">
+    <button class="btn btn-primary btn-lg mr-4" (click)="reset()">Reset</button>
+    <button class="btn btn-primary btn-lg" (click)="add()">Add</button>
+  </div>
+
+  <div *ngFor="let counter of counters; let i = index" class="mb-3">
+    <span class="btn btn-primary px-4 mr-4">{{ counter.count }}</span>
+
+    <button class="btn btn-secondary btn-lg mr-3" (click)="increment(i)">Increment</button>
+    <button class="btn btn-secondary btn-lg mr-3" (click)="decrement(i)">Decrement</button>
+    <button class="btn btn-danger btn-lg" (click)="delete(i)">Delete</button>
+  </div>
+</div>

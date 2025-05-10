@@ -1,0 +1,17 @@
+<!-- <nav>
+  <a routerLink="/counter" routerLinkActive="active">Counter App</a> |
+  <a routerLink="/weather" routerLinkActive="active">Weather App</a>
+</nav>
+<hr /> -->
+
+<nav class="navbar navbar-expand navbar-dark bg-primary px-4 py-3 shadow mb-4">
+  <div class="container d-flex justify-content-between">
+    <div class="d-flex">
+      <a class="nav-link text-dark nav-font" routerLink="/counter" routerLinkActive="active">
+        <span class="mr-2">Counter</span>
+        <span class="round-button mt-1">{{ countersCount }}</span>
+      </a>
+    </div>
+    <a class="nav-link text-dark nav-font" routerLink="/weather" routerLinkActive="active">Weather</a>
+  </div>
+</nav>
