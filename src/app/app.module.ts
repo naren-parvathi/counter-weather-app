@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
+import { locationReducer } from './store/location-reducer';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,7 @@ import { StoreModule } from '@ngrx/store';
 
     SharedModule,
 
-    StoreModule.forRoot({}, {})
+    StoreModule.forRoot({locations: locationReducer}, {})
   ],
   providers: [],
   bootstrap: [AppComponent]

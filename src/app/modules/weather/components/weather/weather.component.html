@@ -1,16 +1,43 @@
-<p>weather works!</p>
-
 <div class="row">
+  <!-- Locations -->
   <div class="col-4 pr-0">
-    <div class="mr-1 weather-card">
-      <div class="d-flex flex-row">
-        <input type="text" class="custom-input mr-1" placeholder="Enter something..." />
-        <span class="plus-btn px-2" onclick="">+</span>
+    <div class="mr-1 weather-card d-flex flex-column justify-content-between">
+      <div>
+        <div class="d-flex flex-row">
+          <input type="text" class="location-input mr-1" [(ngModel)]="location" placeholder="Enter location" />
+          <span class="add-btn px-2 mt-n3" (click)="addLocation()">+</span>
+        </div>
+
+        <div *ngIf="(locations$ | async)?.length" class="separator-line my-2"></div>
+
+        <div *ngIf="(locations$ | async)?.length" class="recent-loc bottom-bordered">
+          <span>Recent locations</span>
+        </div>
+
+        <div *ngFor="let location of (locations$ | async); let i = index">
+          <div class="d-flex flex-row justify-content-between p-1 bottom-bordered">
+
+            <span class="item-font">{{ location }}</span>
+
+            <div>
+              <img src="assets/reload.png" alt="Refresh" class="refresh-icon mr-3">
+              <span (click)="removeLocation(i)" class="remove-icon"><span class="fs-4">X</span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-light" (click)="clearLocations()">Clear</button>
       </div>
     </div>
   </div>
+  <!-- / Locations -->
+
+  <!-- Weather card -->
   <div class="col-8">
     <div class="weather-card">
     </div>
   </div>
+  <!-- / Weather card -->
 </div>
