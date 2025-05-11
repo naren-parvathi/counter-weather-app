@@ -39,7 +39,7 @@
   cursor: pointer;
 }
 
-.remove-icon {
+.cursor-pointer {
   cursor: pointer;
 }
 
@@ -58,20 +58,20 @@ weather-container {
   font-family: Arial, sans-serif;
 }
 
-.forecast-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 10px;
-}
-
 .forecast-item {
-  background: #f2f2f2;
-  padding: 10px;
-  border-radius: 8px;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70px;
+  margin: 8px;
 }
 
 .loading {
   color: #007bff;
   font-weight: bold;
+}
+
+.current-weather-icon {
+  width: 175px;
+  height: 175px
 }

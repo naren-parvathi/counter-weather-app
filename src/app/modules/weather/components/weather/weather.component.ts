@@ -54,4 +54,28 @@ export class WeatherComponent implements OnInit {
     this.store.dispatch(loadWeather({ city }));
   }
 
+  iconMapping(iconCode: string): string {
+    const map: Record<string, string> = {
+      '01d': 'day.svg',
+      '01n': 'night.svg',
+      '02d': 'cloudy-day-1.svg',
+      '02n': 'cloudy-night-1.svg',
+      '03d': 'cloudy.svg',
+      '03n': 'cloudy.svg',
+      '04d': 'cloudy.svg',
+      '04n': 'cloudy.svg',
+      '09d': 'rainy-4.svg',
+      '09n': 'rainy-4.svg',
+      '10d': 'rainy-1.svg',
+      '10n': 'rainy-2.svg',
+      '11d': 'thunder.svg',
+      '11n': 'thunder.svg',
+      '13d': 'snowy-1.svg',
+      '13n': 'snowy-2.svg',
+      '50d': 'weather.svg',
+      '50n': 'weather.svg',
+    };
+    return map[iconCode] || 'cloudy.svg';
+  }
+
 }

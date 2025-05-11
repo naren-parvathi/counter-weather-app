@@ -21,7 +21,7 @@
 
             <div>
               <img src="assets/reload.png" alt="Refresh" class="refresh-icon mr-3" (click)="fetchWeather(location)">
-              <span (click)="removeLocation(i)" class="remove-icon"><span class="fs-4">X</span></span>
+              <span (click)="removeLocation(i)" class="cursor-pointer"><span class="fs-4">X</span></span>
             </div>
           </div>
         </div>
@@ -43,20 +43,43 @@
 
       <!-- Current Weather -->
       <div *ngIf="(currentWeather$ | async) as current">
-        <h3>Current Weather in {{ current.name }}</h3>
-        <p>Temperature: {{ current.main.temp }} °C</p>
-        <p>Condition: {{ current.weather[0].description }}</p>
-        <p>Humidity: {{ current.main.humidity }}%</p>
-        <p>Wind: {{ current.wind.speed }} m/s</p>
+        <div class="row d-flex justify-content-between">
+          <h4 class="pl-3 font-weight-bolder">{{ current?.name }}</h4>
+          <div>
+            <img src="assets/reload.png" class="mr-3 cursor-pointer" width="20" height="20" alt="Refresh"
+              (click)="fetchWeather(current?.name)">
+          </div>
+        </div>
+
+        <div class="row d-flex">
+          <div class="mt-n4">
+            <img class="current-weather-icon" [src]="'assets/weather-icons/' + iconMapping(current?.weather[0]?.icon)"
+              alt="Weather icon" />
+          </div>
+
+          <div class="pl-0 mt-2">
+            <p>{{ current?.main?.temp }}C</p>
+            <p>{{ current?.weather[0]?.description | titlecase }}</p>
+            <p>Wind: {{ current?.wind?.speed }}ms {{current?.wind?.speed}} deg</p>
+            <p>Pressure {{ current?.main?.pressure }}</p>
+          </div>
+        </div>
       </div>
 
       <div *ngIf="(forecastWeather$ | async) as forecast">
-        <h3>5-Day Forecast</h3>
-        <div class="forecast-grid">
-          <div *ngFor="let item of forecast.list" class="forecast-item">
-            <p><strong>{{ item.dt_txt }}</strong></p>
-            <p>Temp: {{ item.main.temp }} °C</p>
-            <p>{{ item.weather[0].description }}</p>
+        <div class="row d-flex p-3">
+          <div *ngFor="let weather of forecast.list">
+            <div class="forecast-item text-center">
+              <div>{{ weather.dt_txt | date: 'dd'}}</div>
+
+              <div>{{ weather.dt_txt | date: 'EEE'}}</div>
+
+              <img [src]="'assets/weather-icons/' + iconMapping(weather?.weather[0]?.main?.icon)" alt="Weather icon" width="50"
+                height="50" />
+
+              <div>{{ weather.main.temp }}C</div>
+            </div>
+
           </div>
         </div>
       </div>
