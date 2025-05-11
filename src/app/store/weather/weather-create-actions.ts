@@ -14,3 +14,10 @@ export const loadWeatherFailure = createAction(
   '[Weather] Load Weather Failure',
   props<{ error: any }>()
 );
+
+export const removeLocation = createAction(
+  '[Locations List] Remove Location',
+  props<{ index: number }>()
+);
+
+export const clearLocations = createAction('[Locations List] Clear Locations');

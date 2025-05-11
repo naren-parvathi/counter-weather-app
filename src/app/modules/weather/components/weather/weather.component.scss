@@ -75,3 +75,15 @@ weather-container {
   width: 175px;
   height: 175px
 }
+
+.error-message {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.clear-button {
+  background: #808080a3;
+  color: black;
+  border: #808080a3;
+}

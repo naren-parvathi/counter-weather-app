@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { WeatherState } from 'src/app/models/weather.model';
-import { addLocation, clearLocations, removeLocation } from 'src/app/store/location-create-action';
-import { loadWeather } from 'src/app/store/weather/weather-create-actions';
+import { clearLocations, loadWeather, removeLocation } from 'src/app/store/weather/weather-create-actions';
 
 @Component({
   selector: 'app-weather',
@@ -13,19 +12,18 @@ import { loadWeather } from 'src/app/store/weather/weather-create-actions';
 export class WeatherComponent implements OnInit {
 
   location: string = '';
-  locations$: Observable<string[]>;
-
+  locationsList$: Observable<string[]>;
   currentWeather$: Observable<any>;
   forecastWeather$: Observable<any>;
   loading$: Observable<boolean>;
   error$: Observable<string | null>;
 
   constructor(
-    private store: Store<{ locations: string[]; weather: WeatherState }>
+    private store: Store<{ weather: WeatherState }>
   ) {
-    this.locations$ = this.store.select('locations');
     this.currentWeather$ = this.store.select(state => state.weather.currentWeather);
     this.forecastWeather$ = this.store.select(state => state.weather.forecastWeather);
+    this.locationsList$ = this.store.select(state => state.weather.locations);
     this.loading$ = this.store.select(state => state.weather.loading);
     this.error$ = this.store.select(state => state.weather.error)
   }
@@ -36,7 +34,7 @@ export class WeatherComponent implements OnInit {
   addLocation(): void {
     if (this.location.trim()) {
       const newLocation: string = this.location.trim();
-      this.store.dispatch(addLocation({ newLocation }));
+      // this.store.dispatch(addLocation({ newLocation }));
       this.fetchWeather(newLocation)
       this.location = '';
     }

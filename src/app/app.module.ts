@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
-import { locationReducer } from './store/location-reducer';
 import { weatherReducer } from './store/weather/weather-reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { WeatherEffects } from './store/weather/weather-effects';
@@ -25,7 +24,6 @@ import { HttpClientModule } from '@angular/common/http';
 
     StoreModule.forRoot(
       {
-        locations: locationReducer,
         weather: weatherReducer
       }
     ),
