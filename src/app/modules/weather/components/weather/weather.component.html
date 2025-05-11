@@ -20,7 +20,7 @@
             <span class="item-font">{{ location }}</span>
 
             <div>
-              <img src="assets/reload.png" alt="Refresh" class="refresh-icon mr-3">
+              <img src="assets/reload.png" alt="Refresh" class="refresh-icon mr-3" (click)="fetchWeather(location)">
               <span (click)="removeLocation(i)" class="remove-icon"><span class="fs-4">X</span></span>
             </div>
           </div>
@@ -37,6 +37,29 @@
   <!-- Weather card -->
   <div class="col-8">
     <div class="weather-card">
+      <div *ngIf="(loading$ | async)" class="loading">
+        Loading weather data...
+      </div>
+
+      <!-- Current Weather -->
+      <div *ngIf="(currentWeather$ | async) as current">
+        <h3>Current Weather in {{ current.name }}</h3>
+        <p>Temperature: {{ current.main.temp }} °C</p>
+        <p>Condition: {{ current.weather[0].description }}</p>
+        <p>Humidity: {{ current.main.humidity }}%</p>
+        <p>Wind: {{ current.wind.speed }} m/s</p>
+      </div>
+
+      <div *ngIf="(forecastWeather$ | async) as forecast">
+        <h3>5-Day Forecast</h3>
+        <div class="forecast-grid">
+          <div *ngFor="let item of forecast.list" class="forecast-item">
+            <p><strong>{{ item.dt_txt }}</strong></p>
+            <p>Temp: {{ item.main.temp }} °C</p>
+            <p>{{ item.weather[0].description }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <!-- / Weather card -->

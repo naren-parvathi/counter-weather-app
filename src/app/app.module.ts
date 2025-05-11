@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { StoreModule } from '@ngrx/store';
 import { locationReducer } from './store/location-reducer';
+import { weatherReducer } from './store/weather/weather-reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { WeatherEffects } from './store/weather/weather-effects';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +21,16 @@ import { locationReducer } from './store/location-reducer';
 
     SharedModule,
 
-    StoreModule.forRoot({locations: locationReducer}, {})
+    HttpClientModule,
+
+    StoreModule.forRoot(
+      {
+        locations: locationReducer,
+        weather: weatherReducer
+      }
+    ),
+
+    EffectsModule.forRoot([WeatherEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent]

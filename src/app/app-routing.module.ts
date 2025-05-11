@@ -10,7 +10,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/counter/counter.module').then(m => m.CounterModule)
   },
   {
-    path: 'weather',
+    path: 'vatavaran',
     loadChildren: () => import('./modules/weather/weather.module').then(m => m.WeatherModule)
   }
 ];

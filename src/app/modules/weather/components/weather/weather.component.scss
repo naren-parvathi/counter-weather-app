@@ -50,3 +50,28 @@
 .item-font {
   font-size: 14px;
 }
+
+weather-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.forecast-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 10px;
+}
+
+.forecast-item {
+  background: #f2f2f2;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.loading {
+  color: #007bff;
+  font-weight: bold;
+}
